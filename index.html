@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quantum Signal AI</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#071a2d,#0c243b,#051522);
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+color:white;
+}
+
+.container{
+width:360px;
+background:#0f1e33;
+border-radius:25px;
+padding:25px;
+text-align:center;
+box-shadow:0 0 30px rgba(0,255,180,0.2);
+}
+
+/* Logo */
+
+.logo{
+width:200px;
+margin-bottom:10px;
+border-radius:10px;
+}
+
+h1{
+color:#19ffc9;
+margin-bottom:20px;
+}
+
+/* Pair Select */
+
+.selectBox{
+width:100%;
+padding:15px;
+border-radius:30px;
+border:2px solid #19ffc9;
+cursor:pointer;
+font-size:18px;
+}
+
+/* Price */
+
+.price{
+margin-top:15px;
+font-size:22px;
+}
+
+.profit{
+color:#1cff9c;
+margin-top:5px;
+font-size:18px;
+}
+
+/* Signal Circle */
+
+.circle{
+margin:30px auto;
+width:180px;
+height:180px;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:28px;
+font-weight:bold;
+background:#142b40;
+box-shadow:0 0 40px #00ff9c;
+}
+
+.loading{
+font-size:20px;
+}
+
+.conf{
+margin-top:15px;
+font-size:18px;
+}
+
+/* Buttons */
+
+button{
+width:100%;
+padding:14px;
+border-radius:30px;
+border:none;
+font-size:18px;
+margin-top:15px;
+cursor:pointer;
+}
+
+.analyze{
+background:linear-gradient(90deg,#0df2c4,#0cff7a);
+color:black;
+font-weight:bold;
+}
+
+.register{
+background:transparent;
+border:2px solid #19ffc9;
+color:#19ffc9;
+}
+
+/* Log */
+
+.log{
+margin-top:20px;
+font-size:14px;
+color:#ccc;
+}
+
+/* Popup */
+
+.popup{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.7);
+justify-content:center;
+align-items:center;
+}
+
+.optionBox{
+width:90%;
+max-width:350px;
+background:#555;
+border-radius:10px;
+overflow:hidden;
+}
+
+.option{
+padding:20px;
+border-bottom:1px solid #777;
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-size:22px;
+cursor:pointer;
+}
+
+.option:last-child{
+border:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- LOGO -->
+<img class="logo" src="https://i.postimg.cc/65Zz96X4/a-comprehensive-pocket-option-review-pros-cons-and-3.jpg">
+
+<h1>Quantum Signal AI</h1>
+
+<div class="selectBox" onclick="openPopup()" id="pair">
+EUR/USD
+</div>
+
+<div class="price">
+Price: <span id="price">1.10011</span>
+</div>
+
+<div class="profit">
+Live Profit: $<span id="profit">3.76</span>
+</div>
+
+<div class="circle" id="signal">
+<div class="loading">Loading...</div>
+</div>
+
+<div class="conf" id="conf"></div>
+
+<button class="analyze" onclick="analyze()">Analyze</button>
+
+<button class="register">Register</button>
+
+<div class="log" id="log">
+12:28:02 – EUR/USD – BUY ↑ (92%)
+</div>
+
+</div>
+
+<div class="popup" id="popup">
+
+<div class="optionBox">
+
+<div class="option" onclick="selectPair('EUR/USD')">
+EUR/USD
+<input type="radio" checked>
+</div>
+
+<div class="option" onclick="selectPair('GBP/USD')">
+GBP/USD
+<input type="radio">
+</div>
+
+<div class="option" onclick="selectPair('USD/JPY')">
+USD/JPY
+<input type="radio">
+</div>
+
+<div class="option" onclick="selectPair('BTC/USDT')">
+BTC/USDT
+<input type="radio">
+</div>
+
+<div class="option" onclick="selectPair('XAU/USD (Gold)')">
+XAU/USD (Gold)
+<input type="radio">
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+function openPopup(){
+document.getElementById("popup").style.display="flex"
+}
+
+function selectPair(pair){
+document.getElementById("pair").innerText=pair
+document.getElementById("popup").style.display="none"
+}
+
+function analyze(){
+
+let circle = document.getElementById("signal")
+let conf = document.getElementById("conf")
+let pair = document.getElementById("pair").innerText
+
+circle.innerHTML="Loading..."
+
+setTimeout(()=>{
+
+let percent = Math.floor(Math.random()*10)+90
+
+circle.innerHTML="BUY ↑"
+circle.style.background="#0d3b2e"
+
+conf.innerHTML=pair+" AI Confidence: "+percent+"%"
+
+let time = new Date().toLocaleTimeString()
+
+document.getElementById("log").innerHTML =
+time+" – "+pair+" – BUY ↑ ("+percent+"%)"
+
+},2000)
+
+}
+
+</script>
+
+</body>
+</html>
